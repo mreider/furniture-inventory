@@ -54,6 +54,19 @@ DECISION = {
 }
 
 
+# items reserved for a specific person (slug -> name); shown as its own pill
+RESERVED = {
+ "dr-bedside-tables": "Timur",
+ "db-shelves":        "Timur",
+ "entrance-shoe-rack":"Timur",
+ "living-chair-stool":"Timur",
+ "living-tv-stand":   "Timur",
+ "df-desk-chair":     "Vika",
+ "kitchen-table":     "James",
+ "kitchen-shelf":     "Korbinian",
+}
+
+
 def imgnames(slug, seqs):
     if len(seqs)==1: return [f"{slug}.jpg"]
     return [f"{slug}-{n+1}.jpg" for n in range(len(seqs))]
@@ -135,6 +148,7 @@ h2.room{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#6b72
 .d-july10{background:#d1fae5;color:#047857}
 .d-sell{background:#f3e8ff;color:#7e22ce}
 .d-leo{background:#fef3c7;color:#b45309}
+.d-reserved{background:#cffafe;color:#0e7490}
 .owner{background:#f3f4f6;color:#374151}
 .dl{margin-top:auto;font-size:13px}
 .dl a{color:#4338ca;text-decoration:none;font-weight:600}
@@ -188,7 +202,7 @@ def filterbar(decisions_present, counts):
     return ('<div class="filterbar"><div class="wrap">'
             '<span class="flabel">Filter:</span>' + "".join(chips) + '</div></div>')
 
-def card(item, show_owner=True, show_location_as_meta=None):
+def card(item, show_owner=True, show_location_as_meta=None, show_reserved=True):
     room,name,owner,dec,seqs,slug = item
     imgs = imgnames(slug, seqs)
     photos = "".join(
@@ -196,6 +210,9 @@ def card(item, show_owner=True, show_location_as_meta=None):
         for im in imgs)
     meta = f'<div class="meta">{esc(show_location_as_meta if show_location_as_meta else room)}</div>'
     badges = ""
+    resv = RESERVED.get(slug) if show_reserved else None
+    if resv:
+        badges += f'<span class="badge d-reserved">Reserved · {esc(resv)}</span>'
     if show_owner:
         badges += f'<span class="badge owner">{esc(owner)}</span>'
     badges += f'<span class="badge {DEC_CLASS[dec]}">{esc(DEC_LABEL[dec])}</span>'
@@ -248,7 +265,7 @@ def build_mover():
     for title, items in sections:
         h += f'<div class="block"><h2 class="room">{esc(title)} <span class="count">· {len(items)}</span></h2>'
         h += '<div class="grid">' + "".join(
-                card(it, show_owner=False, show_location_as_meta=f"Location: {it[0]}") for it in items) + '</div></div>'
+                card(it, show_owner=False, show_reserved=False, show_location_as_meta=f"Location: {it[0]}") for it in items) + '</div></div>'
     h += '<div id="empty" class="empty">No items match that filter.</div>'
     h += '</div></main>' + PAGE_FOOT
     write("mover.html", h)
