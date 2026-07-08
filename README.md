@@ -6,3 +6,8 @@ Static site for coordinating the furniture move. Item numbers (#N) are stable ac
 - **mover.html** — items being collected, two trips (10 & 29 July) → https://mover.mreider.com (redirects here)
 
 Move dates updated (July 9 → July 10). Built from the original Furniture.pdf.
+
+## Editing
+Both pages are generated from one place. Edit the `ITEMS` list (or labels) in
+`generate.py`, then run `python3 generate.py` to rebuild `index.html` and
+`mover.html`. Item numbers are assigned automatically in list order.
