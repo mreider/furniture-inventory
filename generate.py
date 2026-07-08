@@ -64,6 +64,7 @@ RESERVED = {
  "df-desk-chair":     "Vika",
  "kitchen-table":     "James",
  "kitchen-shelf":     "Korbinian",
+ "uf-mirror":         "Geri",
 }
 
 
