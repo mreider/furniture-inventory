@@ -203,7 +203,10 @@ def filterbar(decisions_present, counts):
     return ('<div class="filterbar"><div class="wrap">'
             '<span class="flabel">Filter:</span>' + "".join(chips) + '</div></div>')
 
-def card(item, show_owner=True, show_location_as_meta=None, show_reserved=True):
+# date-based decisions: badges/chips hidden on the inventory index (still drive the mover page)
+DATE_DECS = {"july10", "july28"}
+
+def card(item, show_owner=True, show_location_as_meta=None, show_reserved=True, show_dates=True):
     room,name,owner,dec,seqs,slug = item
     imgs = imgnames(slug, seqs)
     photos = "".join(
@@ -216,9 +219,13 @@ def card(item, show_owner=True, show_location_as_meta=None, show_reserved=True):
         badges += f'<span class="badge d-reserved">Reserved · {esc(resv)}</span>'
     if show_owner:
         badges += f'<span class="badge owner">{esc(owner)}</span>'
-    badges += f'<span class="badge {DEC_CLASS[dec]}">{esc(DEC_LABEL[dec])}</span>'
+    # reserved supersedes the decision badge; date badges are hidden where show_dates is off
+    dec_hidden = (resv is not None) or (not show_dates and dec in DATE_DECS)
+    if not dec_hidden:
+        badges += f'<span class="badge {DEC_CLASS[dec]}">{esc(DEC_LABEL[dec])}</span>'
+    data_dec = "reserved" if resv else dec
     num = NUM[slug]
-    return f"""<div class="card" data-dec="{dec}">
+    return f"""<div class="card" data-dec="{data_dec}">
 <div class="photos"><span class="idnum">#{num}</span>{photos}</div>
 <div class="body"><div class="name">{esc(name)}</div>{meta}
 <div class="badges">{badges}</div></div></div>"""
@@ -237,15 +244,18 @@ def write(fn, content):
 
 # ---------- Combined page (everyone): full inventory, filter by tag ----------
 def build_index():
-    present = [d for d in DEC_ORDER if any(it[3]==d for it in ITEMS)]
-    counts = {d: sum(1 for it in ITEMS if it[3]==d) for d in present}
+    # effective decision for the index: reserved supersedes; date tags are not shown as chips
+    def eff(it): return "reserved" if it[5] in RESERVED else it[3]
+    present = [d for d in DEC_ORDER
+               if d not in DATE_DECS and any(eff(it)==d for it in ITEMS)]
+    counts = {d: sum(1 for it in ITEMS if eff(it)==d) for d in present}
     nav = '<nav><a href="index.html">Full inventory</a><a href="mover.html">Mover schedule →</a></nav>'
     h = page_head("Furniture Inventory", nav)
     h += filterbar(present, counts)
     h += '<main><div class="wrap">'
     for room, items in by_key(ITEMS, lambda it: it[0]):
         h += f'<div class="block"><h2 class="room">{esc(room)} <span class="count">· {len(items)}</span></h2>'
-        h += '<div class="grid">' + "".join(card(it) for it in items) + '</div></div>'
+        h += '<div class="grid">' + "".join(card(it, show_dates=False) for it in items) + '</div></div>'
     h += '<div id="empty" class="empty">No items match that filter.</div>'
     h += '</div></main>' + PAGE_FOOT
     write("index.html", h)
