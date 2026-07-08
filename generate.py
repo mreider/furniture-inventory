@@ -56,6 +56,9 @@ DECISION = {
 
 # items reserved for a specific person (slug -> name); shown as its own pill
 RESERVED = {
+ "entrance-closets":  "Michael",
+ "entrance-cabinets": "Michael",
+ "ur-chest-drawers":  "Michael",
  "dr-bedside-tables": "Timur",
  "db-shelves":        "Timur",
  "entrance-shoe-rack":"Timur",
@@ -82,8 +85,9 @@ def esc(s): return html.escape(s, quote=True)
 NUM = {it[5]: i for i, it in enumerate(ITEMS, 1)}
 
 # display order + labels/classes for decision tags
-DEC_ORDER = ["michael", "leo", "july10", "july28", "sell", "matt_removes"]
+DEC_ORDER = ["reserved", "michael", "leo", "july10", "july28", "sell", "matt_removes"]
 DEC_LABEL = {
+ "reserved":     "Reserved",
  "michael":      "Michael wants",
  "leo":          "Leo to decide",
  "july10":       "Remove July 10",
@@ -92,7 +96,7 @@ DEC_LABEL = {
  "matt_removes": "Matt removes",
 }
 DEC_CLASS = {
- "michael":"d-michael","leo":"d-leo","july10":"d-july10",
+ "reserved":"d-reserved","michael":"d-michael","leo":"d-leo","july10":"d-july10",
  "july28":"d-july28","sell":"d-sell","matt_removes":"d-mattrem",
 }
 
@@ -116,6 +120,7 @@ header.site nav a{color:#a5b4fc;text-decoration:none;font-weight:600;margin-righ
 .chip .n{font-weight:600;opacity:.7;font-size:12px}
 .chip.active{box-shadow:0 0 0 2px #111827 inset;border-color:#111827}
 .chip.michael.active{box-shadow:0 0 0 2px #1e40af inset;border-color:#1e40af}
+.chip.d-reserved{background:#cffafe;color:#0e7490;border-color:#a5f3fc}
 .chip.d-michael{background:#dbeafe;color:#1e40af;border-color:#bfdbfe}
 .chip.d-leo{background:#fef3c7;color:#b45309;border-color:#fde68a}
 .chip.d-july10{background:#d1fae5;color:#047857;border-color:#a7f3d0}
@@ -136,6 +141,14 @@ h2.room{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#6b72
 .photos{display:flex;background:#eef0f2;position:relative}
 .idnum{position:absolute;top:8px;left:8px;z-index:1;background:#111827e6;color:#fff;
   font-size:13px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.02em}
+.ribbon{position:absolute;top:0;right:0;width:120px;height:120px;overflow:hidden;z-index:3;pointer-events:none}
+.ribbon span{position:absolute;top:26px;right:-44px;width:180px;transform:rotate(45deg);text-align:center;
+  padding:6px 0;background:#dc2626;color:#fff;font-size:12px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;box-shadow:0 2px 6px rgba(0,0,0,.35);
+  border-top:1px solid #fca5a5;border-bottom:1px solid #991b1b}
+.card.reserved{border-color:#fecaca}
+.card.reserved .photos::after{content:"";position:absolute;inset:0;background:rgba(17,24,39,.10);z-index:2}
+.card.reserved .photos img{filter:saturate(.85) brightness(.97)}
 .photos a{flex:1;display:block;line-height:0}
 .photos img{width:100%;height:190px;object-fit:cover;display:block}
 .body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:8px}
@@ -224,9 +237,11 @@ def card(item, show_owner=True, show_location_as_meta=None, show_reserved=True, 
     if not dec_hidden:
         badges += f'<span class="badge {DEC_CLASS[dec]}">{esc(DEC_LABEL[dec])}</span>'
     data_dec = "reserved" if resv else dec
+    card_cls = "card reserved" if resv else "card"
+    ribbon = '<div class="ribbon"><span>Reserved</span></div>' if resv else ""
     num = NUM[slug]
-    return f"""<div class="card" data-dec="{data_dec}">
-<div class="photos"><span class="idnum">#{num}</span>{photos}</div>
+    return f"""<div class="{card_cls}" data-dec="{data_dec}">
+<div class="photos"><span class="idnum">#{num}</span>{ribbon}{photos}</div>
 <div class="body"><div class="name">{esc(name)}</div>{meta}
 <div class="badges">{badges}</div></div></div>"""
 
