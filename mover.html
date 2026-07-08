@@ -1,0 +1,142 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mover Schedule — Two Trips</title><style>
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:#1f2328;background:#f6f7f9;-webkit-text-size-adjust:100%}
+header.site{background:#111827;color:#fff;padding:26px 20px}
+header.site .wrap{max-width:1100px;margin:0 auto}
+header.site h1{margin:0 0 6px;font-size:23px;font-weight:700}
+header.site p{margin:0;color:#c7cbd1;font-size:15px}
+header.site nav{margin-top:12px;font-size:14px}
+header.site nav a{color:#a5b4fc;text-decoration:none;font-weight:600;margin-right:16px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.filterbar{position:sticky;top:0;z-index:5;background:#fffffff2;backdrop-filter:blur(6px);
+  border-bottom:1px solid #e4e7eb;padding:12px 0}
+.filterbar .wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flabel{font-size:13px;color:#6b7280;font-weight:600;margin-right:2px}
+.chip{border:1px solid #d1d5db;background:#fff;border-radius:20px;padding:5px 13px;font-size:13px;
+  font-weight:600;cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px;line-height:1}
+.chip .n{font-weight:600;opacity:.7;font-size:12px}
+.chip.active{box-shadow:0 0 0 2px #111827 inset;border-color:#111827}
+.chip.michael.active{box-shadow:0 0 0 2px #1e40af inset;border-color:#1e40af}
+.chip.d-michael{background:#dbeafe;color:#1e40af;border-color:#bfdbfe}
+.chip.d-leo{background:#fef3c7;color:#b45309;border-color:#fde68a}
+.chip.d-july10{background:#d1fae5;color:#047857;border-color:#a7f3d0}
+.chip.d-july28{background:#ede9fe;color:#6d28d9;border-color:#ddd6fe}
+.chip.d-sell{background:#f3e8ff;color:#7e22ce;border-color:#e9d5ff}
+.chip.d-mattrem{background:#fee2e2;color:#b91c1c;border-color:#fecaca}
+.chip.active{filter:saturate(1.1)}
+.chip.on{outline:3px solid rgba(17,24,39,.85);outline-offset:1px}
+#allchip{background:#111827;color:#fff;border-color:#111827}
+#allchip.dim{background:#fff;color:#374151}
+main{padding:22px 0 60px}
+.block{margin-bottom:8px}
+h2.room{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;
+  margin:26px 0 12px;padding-bottom:6px;border-bottom:1px solid #e4e7eb}
+.count{color:#9ca3af;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #e4e7eb;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.photos{display:flex;background:#eef0f2;position:relative}
+.idnum{position:absolute;top:8px;left:8px;z-index:1;background:#111827e6;color:#fff;
+  font-size:13px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.02em}
+.photos a{flex:1;display:block;line-height:0}
+.photos img{width:100%;height:190px;object-fit:cover;display:block}
+.body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:8px}
+.name{font-weight:650;font-size:16px}
+.meta{font-size:13px;color:#6b7280}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.d-michael{background:#dbeafe;color:#1e40af}
+.d-mattrem{background:#fee2e2;color:#b91c1c}
+.d-july28{background:#ede9fe;color:#6d28d9}
+.d-july10{background:#d1fae5;color:#047857}
+.d-sell{background:#f3e8ff;color:#7e22ce}
+.d-leo{background:#fef3c7;color:#b45309}
+.owner{background:#f3f4f6;color:#374151}
+.dl{margin-top:auto;font-size:13px}
+.dl a{color:#4338ca;text-decoration:none;font-weight:600}
+.dl a:hover{text-decoration:underline}
+.empty{display:none;color:#6b7280;padding:30px 0;font-size:15px}
+footer{padding:30px 20px;text-align:center;color:#9ca3af;font-size:13px}
+@media (max-width:520px){ .photos img{height:220px} }
+</style></head><body>
+<header class="site"><div class="wrap"><h1>Mover Schedule — Two Trips</h1><nav><a href="index.html">← Full inventory</a><a href="mover.html">Mover schedule</a></nav></div></header><div class="filterbar"><div class="wrap"><span class="flabel">Filter:</span><button id="allchip" class="chip" onclick="clearAll()">Show all</button><button class="chip d-july10" data-dec="july10" onclick="toggle('july10')">Remove July 10 <span class="n">11</span></button><button class="chip d-july28" data-dec="july28" onclick="toggle('july28')">Remove July 28th <span class="n">7</span></button></div></div><main><div class="wrap"><div class="block"><h2 class="room">Trip 1 — Thursday 10 July <span class="count">· 11</span></h2><div class="grid"><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#6</span><a href="images/living-gray-sofa.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/living-gray-sofa.jpg" alt="Gray IKEA Sofa"></a></div>
+<div class="body"><div class="name">Gray IKEA Sofa</div><div class="meta">Location: Living Room</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#7</span><a href="images/living-red-sofa.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/living-red-sofa.jpg" alt="Red IKEA Sofa"></a></div>
+<div class="body"><div class="name">Red IKEA Sofa</div><div class="meta">Location: Living Room</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#8</span><a href="images/living-chair-stool.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/living-chair-stool.jpg" alt="Blue Chair and Stool"></a></div>
+<div class="body"><div class="name">Blue Chair and Stool</div><div class="meta">Location: Living Room</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#9</span><a href="images/living-tv-stand.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/living-tv-stand.jpg" alt="TV Stand and Shelves"></a></div>
+<div class="body"><div class="name">TV Stand and Shelves</div><div class="meta">Location: Living Room</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#10</span><a href="images/living-shelves.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/living-shelves.jpg" alt="Shelves"></a></div>
+<div class="body"><div class="name">Shelves</div><div class="meta">Location: Living Room</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#13</span><a href="images/df-bed.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/df-bed.jpg" alt="Mattress and Bed Frame"></a></div>
+<div class="body"><div class="name">Mattress and Bed Frame</div><div class="meta">Location: Downstairs Front Bedroom</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#22</span><a href="images/uf-wardrobe.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/uf-wardrobe.jpg" alt="Wardrobe Unit"></a></div>
+<div class="body"><div class="name">Wardrobe Unit</div><div class="meta">Location: Upstairs Front Bedroom</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#23</span><a href="images/uf-chest-drawers.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/uf-chest-drawers.jpg" alt="Chest of Drawers"></a></div>
+<div class="body"><div class="name">Chest of Drawers</div><div class="meta">Location: Upstairs Front Bedroom</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#24</span><a href="images/uf-desk.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/uf-desk.jpg" alt="Desk"></a></div>
+<div class="body"><div class="name">Desk</div><div class="meta">Location: Upstairs Front Bedroom</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#27</span><a href="images/uh-mattress.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/uh-mattress.jpg" alt="Mattress"></a></div>
+<div class="body"><div class="name">Mattress</div><div class="meta">Location: Upstairs Hallway</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div><div class="card" data-dec="july10">
+<div class="photos"><span class="idnum">#34</span><a href="images/ur-cabinets.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/ur-cabinets.jpg" alt="Cabinets"></a></div>
+<div class="body"><div class="name">Cabinets</div><div class="meta">Location: Upstairs Rear Bedroom</div>
+<div class="badges"><span class="badge d-july10">Remove July 10</span></div></div></div></div></div><div class="block"><h2 class="room">Trip 2 — Tuesday 29 July <span class="count">· 7</span></h2><div class="grid"><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#4</span><a href="images/kitchen-shelf.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/kitchen-shelf.jpg" alt="Shelf"></a></div>
+<div class="body"><div class="name">Shelf</div><div class="meta">Location: Kitchen / Dining Area</div>
+<div class="badges"><span class="badge d-july28">Remove July 28th</span></div></div></div><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#5</span><a href="images/kitchen-table.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/kitchen-table.jpg" alt="Table"></a></div>
+<div class="body"><div class="name">Table</div><div class="meta">Location: Kitchen / Dining Area</div>
+<div class="badges"><span class="badge d-july28">Remove July 28th</span></div></div></div><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#15</span><a href="images/dr-bed.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/dr-bed.jpg" alt="Bed Frame and Mattress"></a></div>
+<div class="body"><div class="name">Bed Frame and Mattress</div><div class="meta">Location: Downstairs Rear Bedroom</div>
+<div class="badges"><span class="badge d-july28">Remove July 28th</span></div></div></div><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#16</span><a href="images/dr-bedside-tables.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/dr-bedside-tables.jpg" alt="Bed Side Tables"></a></div>
+<div class="body"><div class="name">Bed Side Tables</div><div class="meta">Location: Downstairs Rear Bedroom</div>
+<div class="badges"><span class="badge d-july28">Remove July 28th</span></div></div></div><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#30</span><a href="images/ur-bed.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/ur-bed.jpg" alt="Bed Frame and Mattress"></a></div>
+<div class="body"><div class="name">Bed Frame and Mattress</div><div class="meta">Location: Upstairs Rear Bedroom</div>
+<div class="badges"><span class="badge d-july28">Remove July 28th</span></div></div></div><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#32</span><a href="images/ur-desk.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/ur-desk.jpg" alt="Desk"></a></div>
+<div class="body"><div class="name">Desk</div><div class="meta">Location: Upstairs Rear Bedroom</div>
+<div class="badges"><span class="badge d-july28">Remove July 28th</span></div></div></div><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#33</span><a href="images/ur-shelves.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/ur-shelves.jpg" alt="Shelves"></a></div>
+<div class="body"><div class="name">Shelves</div><div class="meta">Location: Upstairs Rear Bedroom</div>
+<div class="badges"><span class="badge d-july28">Remove July 28th</span></div></div></div></div></div><div id="empty" class="empty">No items match that filter.</div></div></main>
+<script>
+const state=new Set();
+function apply(){
+  document.querySelectorAll('.card').forEach(c=>{
+    const d=c.dataset.dec;
+    c.style.display=(state.size===0||state.has(d))?'':'none';
+  });
+  let anyVisible=false;
+  document.querySelectorAll('.block').forEach(b=>{
+    let n=0;b.querySelectorAll('.card').forEach(c=>{if(c.style.display!=='none')n++;});
+    b.style.display=n?'':'none';
+    if(n)anyVisible=true;
+    const cnt=b.querySelector('.count');if(cnt)cnt.textContent='· '+n;
+  });
+  document.querySelectorAll('.chip[data-dec]').forEach(ch=>ch.classList.toggle('on',state.has(ch.dataset.dec)));
+  const all=document.getElementById('allchip');if(all)all.classList.toggle('dim',state.size!==0);
+  const e=document.getElementById('empty');if(e)e.style.display=anyVisible?'none':'block';
+}
+function toggle(d){state.has(d)?state.delete(d):state.add(d);apply();}
+function clearAll(){state.clear();apply();}
+document.addEventListener('DOMContentLoaded',apply);
+</script>
+</body></html>
