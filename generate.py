@@ -281,8 +281,7 @@ def build_index():
     present = [d for d in DEC_ORDER
                if d not in DATE_DECS and any(eff(it)==d for it in ITEMS)]
     counts = {d: sum(1 for it in ITEMS if eff(it)==d) for d in present}
-    nav = '<nav><a href="index.html">Full inventory</a><a href="mover.html">Mover schedule →</a></nav>'
-    h = page_head("Furniture Inventory", nav)
+    h = page_head("Furniture Inventory")
     h += filterbar(present, counts)
     h += '<main><div class="wrap">'
     for room, items in by_key(ITEMS, lambda it: it[0]):
@@ -292,30 +291,7 @@ def build_index():
     h += '</div></main>' + PAGE_FOOT
     write("index.html", h)
 
-# ---------- Mover page: the two trips, filter by trip tag ----------
-def build_mover():
-    trip_items = [it for it in ITEMS if it[3] in ("july10","july28")]
-    present = [d for d in ["july10","july28"]]
-    counts = {d: sum(1 for it in trip_items if it[3]==d) for d in present}
-    nav = '<nav><a href="index.html">← Full inventory</a><a href="mover.html">Mover schedule</a></nav>'
-    h = page_head("Mover Schedule — Two Trips", nav)
-    h += filterbar(present, counts)
-    h += '<main><div class="wrap">'
-    sections = [
-        ("Trip 1 — Thursday 10 July", [it for it in trip_items if it[3]=="july10"]),
-        ("Trip 2 — Tuesday 29 July",  [it for it in trip_items if it[3]=="july28"]),
-    ]
-    for title, items in sections:
-        h += f'<div class="block"><h2 class="room">{esc(title)} <span class="count">· {len(items)}</span></h2>'
-        h += '<div class="grid">' + "".join(
-                card(it, show_owner=False, show_reserved=False, show_location_as_meta=f"Location: {it[0]}") for it in items) + '</div></div>'
-    h += '<div id="empty" class="empty">No items match that filter.</div>'
-    h += '</div></main>' + PAGE_FOOT
-    write("mover.html", h)
-
-
 if __name__ == "__main__":
     build_index()
-    build_mover()
     with open(os.path.join(SITE, "CNAME"), "w") as f: f.write("leo.mreider.com\n")
-    print("regenerated index.html + mover.html")
+    print("regenerated index.html")
