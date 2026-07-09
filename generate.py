@@ -12,8 +12,6 @@ ITEMS = [
  ("Entrance", "Shoe Rack", "Matt / Alison", "matt_removes", [2], "entrance-shoe-rack"),
  ("Kitchen / Dining Area", "Shelf", "Matt / Alison", "july28", [3], "kitchen-shelf"),
  ("Kitchen / Dining Area", "Table", "Matt / Alison", "july28", [4], "kitchen-table"),
- ("Living Room", "Gray IKEA Sofa", "Matt / Alison", "july10", [5], "living-gray-sofa"),
- ("Living Room", "Red IKEA Sofa", "Matt / Alison", "july10", [6], "living-red-sofa"),
  ("Living Room", "Blue Chair and Stool", "Matt / Alison", "july10", [7], "living-chair-stool"),
  ("Living Room", "TV Stand and Shelves", "Matt / Alison", "july10", [8], "living-tv-stand"),
  ("Living Room", "Shelves", "Matt / Alison", "july10", [9], "living-shelves"),
@@ -66,7 +64,6 @@ RESERVED = {
  "living-tv-stand":   "Timur",
  "kitchen-shelf":     "Korbinian",
  "uf-mirror":         "Geri",
- "living-gray-sofa":  "Kitti",
 }
 
 
@@ -78,7 +75,6 @@ NOTES = {
 
 # confirmed pickup appointments (slug -> when); shown as its own pill
 PICKUP = {
- "living-gray-sofa":  "Thu 9 July · 2 pm",
  "dr-bedside-tables": "Sun 12 July · after 3 pm",
  "db-shelves":        "Sun 12 July · after 3 pm",
  "entrance-shoe-rack":"Sun 12 July · after 3 pm",
