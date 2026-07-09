@@ -21,7 +21,7 @@ ITEMS = [
  ("Downstairs Front Bedroom", "Motorized Desk and Chair", "Matt / Alison", "sell", [11], "df-desk-chair"),
  ("Downstairs Front Bedroom", "Mattress and Bed Frame", "Matt / Alison", "july10", [12], "df-bed"),
  ("Downstairs Rear Bedroom", "Chest of Drawers", "Leo Grillberger", "leo", [13], "dr-chest-drawers"),
- ("Downstairs Rear Bedroom", "Bed Frame and Mattress", "Matt / Alison", "july28", [14], "dr-bed"),
+ ("Downstairs Rear Bedroom", "Two Twin Mattresses", "Matt / Alison", "july28", [14], "dr-bed"),
  ("Downstairs Rear Bedroom", "Bed Side Tables", "Matt / Alison", "july28", [15], "dr-bedside-tables"),
  ("Back Utility Room", "Desk", "Matt / Alison", "matt_removes", [16], "utility-desk"),
  ("Back Utility Room", "Washer + 2 Dryers", "Matt / Alison", "sell", [17, 18], "utility-washer-dryers"),
@@ -64,11 +64,15 @@ RESERVED = {
  "entrance-shoe-rack":"Timur",
  "living-chair-stool":"Timur",
  "living-tv-stand":   "Timur",
- "df-desk-chair":     "Vika",
- "kitchen-table":     "James",
  "kitchen-shelf":     "Korbinian",
  "uf-mirror":         "Geri",
  "living-gray-sofa":  "Kitti",
+}
+
+
+# optional short note per item (slug -> text), shown under the name
+NOTES = {
+ "dr-bed": "Two twin mattresses with pads & covers — kept protected, high quality. Frame not included (no longer usable).",
 }
 
 
@@ -167,6 +171,7 @@ h2.room{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#6b72
 .body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:8px}
 .name{font-weight:650;font-size:16px}
 .meta{font-size:13px;color:#6b7280}
+.note{font-size:12.5px;color:#4b5563;margin-top:4px;line-height:1.4}
 .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
 .badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap}
 .d-michael{background:#dbeafe;color:#1e40af}
@@ -240,6 +245,9 @@ def card(item, show_owner=True, show_location_as_meta=None, show_reserved=True, 
         f'<a href="images/{im}" target="_blank" rel="noopener"><img loading="lazy" src="images/{im}" alt="{esc(name)}"></a>'
         for im in imgs)
     meta = f'<div class="meta">{esc(show_location_as_meta if show_location_as_meta else room)}</div>'
+    note = NOTES.get(slug)
+    if note:
+        meta += f'<div class="note">{esc(note)}</div>'
     badges = ""
     resv = RESERVED.get(slug) if show_reserved else None
     if resv:

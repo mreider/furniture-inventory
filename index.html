@@ -55,6 +55,7 @@ h2.room{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#6b72
 .body{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:8px}
 .name{font-weight:650;font-size:16px}
 .meta{font-size:13px;color:#6b7280}
+.note{font-size:12.5px;color:#4b5563;margin-top:4px;line-height:1.4}
 .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
 .badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:20px;white-space:nowrap}
 .d-michael{background:#dbeafe;color:#1e40af}
@@ -73,7 +74,7 @@ h2.room{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#6b72
 footer{padding:30px 20px;text-align:center;color:#9ca3af;font-size:13px}
 @media (max-width:520px){ .photos img{height:220px} }
 </style></head><body>
-<header class="site"><div class="wrap"><h1>Furniture Inventory</h1></div></header><div class="filterbar"><div class="wrap"><span class="flabel">Filter:</span><button id="allchip" class="chip" onclick="clearAll()">Show all</button><button class="chip d-reserved" data-dec="reserved" onclick="toggle('reserved')">Reserved <span class="n">13</span></button><button class="chip d-leo" data-dec="leo" onclick="toggle('leo')">Leo to decide <span class="n">5</span></button><button class="chip d-sell" data-dec="sell" onclick="toggle('sell')">Sell <span class="n">1</span></button><button class="chip d-mattrem" data-dec="matt_removes" onclick="toggle('matt_removes')">Matt removes <span class="n">3</span></button></div></div><main><div class="wrap"><div class="block"><h2 class="room">Entrance <span class="count">· 3</span></h2><div class="grid"><div class="card reserved" data-dec="reserved">
+<header class="site"><div class="wrap"><h1>Furniture Inventory</h1></div></header><div class="filterbar"><div class="wrap"><span class="flabel">Filter:</span><button id="allchip" class="chip" onclick="clearAll()">Show all</button><button class="chip d-reserved" data-dec="reserved" onclick="toggle('reserved')">Reserved <span class="n">11</span></button><button class="chip d-leo" data-dec="leo" onclick="toggle('leo')">Leo to decide <span class="n">5</span></button><button class="chip d-sell" data-dec="sell" onclick="toggle('sell')">Sell <span class="n">2</span></button><button class="chip d-mattrem" data-dec="matt_removes" onclick="toggle('matt_removes')">Matt removes <span class="n">3</span></button></div></div><main><div class="wrap"><div class="block"><h2 class="room">Entrance <span class="count">· 3</span></h2><div class="grid"><div class="card reserved" data-dec="reserved">
 <div class="photos"><span class="idnum">#1</span><div class="ribbon"><span>Reserved</span></div><a href="images/entrance-closets.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/entrance-closets.jpg" alt="Closets"></a></div>
 <div class="body"><div class="name">Closets</div><div class="meta">Entrance</div>
 <div class="badges"><span class="badge d-reserved">Reserved · Michael</span><span class="badge owner">Matt / Alison</span></div></div></div><div class="card reserved" data-dec="reserved">
@@ -85,10 +86,10 @@ footer{padding:30px 20px;text-align:center;color:#9ca3af;font-size:13px}
 <div class="badges"><span class="badge d-reserved">Reserved · Timur</span><span class="badge d-pickup">Pickup · Sun 12 July · after 3 pm</span><span class="badge owner">Matt / Alison</span></div></div></div></div></div><div class="block"><h2 class="room">Kitchen / Dining Area <span class="count">· 2</span></h2><div class="grid"><div class="card reserved" data-dec="reserved">
 <div class="photos"><span class="idnum">#4</span><div class="ribbon"><span>Reserved</span></div><a href="images/kitchen-shelf.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/kitchen-shelf.jpg" alt="Shelf"></a></div>
 <div class="body"><div class="name">Shelf</div><div class="meta">Kitchen / Dining Area</div>
-<div class="badges"><span class="badge d-reserved">Reserved · Korbinian</span><span class="badge d-pickup">Pickup · Tue 14 July</span><span class="badge owner">Matt / Alison</span></div></div></div><div class="card reserved" data-dec="reserved">
-<div class="photos"><span class="idnum">#5</span><div class="ribbon"><span>Reserved</span></div><a href="images/kitchen-table.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/kitchen-table.jpg" alt="Table"></a></div>
+<div class="badges"><span class="badge d-reserved">Reserved · Korbinian</span><span class="badge d-pickup">Pickup · Tue 14 July</span><span class="badge owner">Matt / Alison</span></div></div></div><div class="card" data-dec="july28">
+<div class="photos"><span class="idnum">#5</span><a href="images/kitchen-table.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/kitchen-table.jpg" alt="Table"></a></div>
 <div class="body"><div class="name">Table</div><div class="meta">Kitchen / Dining Area</div>
-<div class="badges"><span class="badge d-reserved">Reserved · James</span><span class="badge owner">Matt / Alison</span></div></div></div></div></div><div class="block"><h2 class="room">Living Room <span class="count">· 5</span></h2><div class="grid"><div class="card reserved" data-dec="reserved">
+<div class="badges"><span class="badge owner">Matt / Alison</span></div></div></div></div></div><div class="block"><h2 class="room">Living Room <span class="count">· 5</span></h2><div class="grid"><div class="card reserved" data-dec="reserved">
 <div class="photos"><span class="idnum">#6</span><div class="ribbon"><span>Reserved</span></div><a href="images/living-gray-sofa.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/living-gray-sofa.jpg" alt="Gray IKEA Sofa"></a></div>
 <div class="body"><div class="name">Gray IKEA Sofa</div><div class="meta">Living Room</div>
 <div class="badges"><span class="badge d-reserved">Reserved · Kitti</span><span class="badge d-pickup">Pickup · Thu 9 July · 2 pm</span><span class="badge owner">Matt / Alison</span></div></div></div><div class="card" data-dec="july10">
@@ -106,18 +107,18 @@ footer{padding:30px 20px;text-align:center;color:#9ca3af;font-size:13px}
 <div class="badges"><span class="badge owner">Matt / Alison</span></div></div></div></div></div><div class="block"><h2 class="room">Downstairs Front Bedroom <span class="count">· 3</span></h2><div class="grid"><div class="card" data-dec="leo">
 <div class="photos"><span class="idnum">#11</span><a href="images/df-chest-drawers.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/df-chest-drawers.jpg" alt="Chest of Drawers"></a></div>
 <div class="body"><div class="name">Chest of Drawers</div><div class="meta">Downstairs Front Bedroom</div>
-<div class="badges"><span class="badge owner">Leo Grillberger</span><span class="badge d-leo">Leo to decide</span></div></div></div><div class="card reserved" data-dec="reserved">
-<div class="photos"><span class="idnum">#12</span><div class="ribbon"><span>Reserved</span></div><a href="images/df-desk-chair.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/df-desk-chair.jpg" alt="Motorized Desk and Chair"></a></div>
+<div class="badges"><span class="badge owner">Leo Grillberger</span><span class="badge d-leo">Leo to decide</span></div></div></div><div class="card" data-dec="sell">
+<div class="photos"><span class="idnum">#12</span><a href="images/df-desk-chair.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/df-desk-chair.jpg" alt="Motorized Desk and Chair"></a></div>
 <div class="body"><div class="name">Motorized Desk and Chair</div><div class="meta">Downstairs Front Bedroom</div>
-<div class="badges"><span class="badge d-reserved">Reserved · Vika</span><span class="badge owner">Matt / Alison</span></div></div></div><div class="card" data-dec="july10">
+<div class="badges"><span class="badge owner">Matt / Alison</span><span class="badge d-sell">Sell</span></div></div></div><div class="card" data-dec="july10">
 <div class="photos"><span class="idnum">#13</span><a href="images/df-bed.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/df-bed.jpg" alt="Mattress and Bed Frame"></a></div>
 <div class="body"><div class="name">Mattress and Bed Frame</div><div class="meta">Downstairs Front Bedroom</div>
 <div class="badges"><span class="badge owner">Matt / Alison</span></div></div></div></div></div><div class="block"><h2 class="room">Downstairs Rear Bedroom <span class="count">· 3</span></h2><div class="grid"><div class="card" data-dec="leo">
 <div class="photos"><span class="idnum">#14</span><a href="images/dr-chest-drawers.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/dr-chest-drawers.jpg" alt="Chest of Drawers"></a></div>
 <div class="body"><div class="name">Chest of Drawers</div><div class="meta">Downstairs Rear Bedroom</div>
 <div class="badges"><span class="badge owner">Leo Grillberger</span><span class="badge d-leo">Leo to decide</span></div></div></div><div class="card" data-dec="july28">
-<div class="photos"><span class="idnum">#15</span><a href="images/dr-bed.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/dr-bed.jpg" alt="Bed Frame and Mattress"></a></div>
-<div class="body"><div class="name">Bed Frame and Mattress</div><div class="meta">Downstairs Rear Bedroom</div>
+<div class="photos"><span class="idnum">#15</span><a href="images/dr-bed.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/dr-bed.jpg" alt="Two Twin Mattresses"></a></div>
+<div class="body"><div class="name">Two Twin Mattresses</div><div class="meta">Downstairs Rear Bedroom</div><div class="note">Two twin mattresses with pads &amp; covers — kept protected, high quality. Frame not included (no longer usable).</div>
 <div class="badges"><span class="badge owner">Matt / Alison</span></div></div></div><div class="card reserved" data-dec="reserved">
 <div class="photos"><span class="idnum">#16</span><div class="ribbon"><span>Reserved</span></div><a href="images/dr-bedside-tables.jpg" target="_blank" rel="noopener"><img loading="lazy" src="images/dr-bedside-tables.jpg" alt="Bed Side Tables"></a></div>
 <div class="body"><div class="name">Bed Side Tables</div><div class="meta">Downstairs Rear Bedroom</div>
