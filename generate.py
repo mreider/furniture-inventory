@@ -68,6 +68,19 @@ RESERVED = {
  "kitchen-table":     "James",
  "kitchen-shelf":     "Korbinian",
  "uf-mirror":         "Geri",
+ "living-gray-sofa":  "Kitti",
+}
+
+
+# confirmed pickup appointments (slug -> when); shown as its own pill
+PICKUP = {
+ "living-gray-sofa":  "Thu 9 July · 2 pm",
+ "dr-bedside-tables": "Sun 12 July · after 3 pm",
+ "db-shelves":        "Sun 12 July · after 3 pm",
+ "entrance-shoe-rack":"Sun 12 July · after 3 pm",
+ "living-chair-stool":"Sun 12 July · after 3 pm",
+ "living-tv-stand":   "Sun 12 July · after 3 pm",
+ "kitchen-shelf":     "Tue 14 July",
 }
 
 
@@ -163,6 +176,7 @@ h2.room{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:#6b72
 .d-sell{background:#f3e8ff;color:#7e22ce}
 .d-leo{background:#fef3c7;color:#b45309}
 .d-reserved{background:#cffafe;color:#0e7490}
+.d-pickup{background:#fce7f3;color:#be185d}
 .owner{background:#f3f4f6;color:#374151}
 .dl{margin-top:auto;font-size:13px}
 .dl a{color:#4338ca;text-decoration:none;font-weight:600}
@@ -230,6 +244,9 @@ def card(item, show_owner=True, show_location_as_meta=None, show_reserved=True, 
     resv = RESERVED.get(slug) if show_reserved else None
     if resv:
         badges += f'<span class="badge d-reserved">Reserved · {esc(resv)}</span>'
+    pickup = PICKUP.get(slug) if show_reserved else None
+    if pickup:
+        badges += f'<span class="badge d-pickup">Pickup · {esc(pickup)}</span>'
     if show_owner:
         badges += f'<span class="badge owner">{esc(owner)}</span>'
     # reserved supersedes the decision badge; date badges are hidden where show_dates is off
